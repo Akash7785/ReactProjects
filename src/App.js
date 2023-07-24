@@ -1,41 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
-
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import About from './components/About';
+import MealDetail from './components/MealDetail';
+import CateDetail from './components/CateDetail';
+import CateWise from './components/CateWise';
+import SearchData from './components/SearchData';
+import Footer from './components/Footer';
 function App() {
+  const [data, setData] = useState('all');
+
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path={`/`} element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/mealDetail/:id" element={<MealDetail />} />
+          <Route path="/cateDetail/:id" element={<CateDetail />} />
+          <Route path="/categroyWise/:cate" element={<CateWise />} />
+          <Route path="/searched/:item" element={<SearchData />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
 }
 
