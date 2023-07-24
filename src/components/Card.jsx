@@ -18,7 +18,6 @@ const Card = ({ img, category, desc, id }) => {
 
   return (
     <div>
-      {/* <Link to={`/mealDetail`}> */}
       <VStack w={52} p={4} m={2} shadow={'lg'}>
         <Container>
           <Image w={'200px'} src={img} />
@@ -31,7 +30,6 @@ const Card = ({ img, category, desc, id }) => {
           </Button>
         </Container>
       </VStack>
-      {/* </Link> */}
     </div>
   );
 };

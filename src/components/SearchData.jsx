@@ -15,7 +15,6 @@ const SearchData = () => {
       const { data } = await axios.get(
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${item}`
       );
-      console.log(data);
       if (data.meals === null) {
         setSearch([]);
         setNoData(true);

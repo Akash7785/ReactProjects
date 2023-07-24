@@ -2,7 +2,6 @@ import { Button, Container, HStack, Heading } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
-import { useNavigate } from 'react-router-dom';
 import Error from './Error';
 
 const FooterAlfabet = () => {
@@ -27,7 +26,6 @@ const FooterAlfabet = () => {
   }, [value]);
 
   const clickHandler = e => {
-    console.log(e.target.value);
     setValue(e.target.value);
     setNoData(false);
   };

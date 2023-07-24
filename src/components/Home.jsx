@@ -25,7 +25,6 @@ const Home = () => {
   const searchData = () => {
     const item = input;
     navigate(`searched/${item}`);
-    console.log(input);
   };
 
   useEffect(() => {

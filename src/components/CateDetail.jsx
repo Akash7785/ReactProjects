@@ -1,15 +1,12 @@
 import {
-  Box,
   Container,
-  HStack,
   Heading,
   Image,
   Stack,
   Text,
   VStack,
 } from '@chakra-ui/react';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 const CateDetail = () => {
   const data = useLocation();
@@ -19,7 +16,6 @@ const CateDetail = () => {
     if (data) {
       console.log('DATA  FROM PR---->', JSON.stringify(data.state));
     }
-    // fetch();
   }, []);
 
   return (
@@ -53,14 +49,3 @@ const DetailCard = ({ name, desc, img }) => {
 };
 
 export default CateDetail;
-{
-  /* <Container bg={'yellowgreen'} h={'62vh'} maxW={'container.xl'}>
-  <HStack justifyContent={'center'} >
-    <Image src={img} />
-    <VStack>
-      <Heading>{name}</Heading>
-      <Text letterSpacing={0.5}>{desc}</Text>
-    </VStack>
-  </HStack>
-</Container> */
-}

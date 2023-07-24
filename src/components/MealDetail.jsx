@@ -13,7 +13,6 @@ const MealDetail = () => {
       const { data } = await axios.get(
         `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
       );
-      console.log(data);
       setMealData(data.meals);
     };
     fetch();

@@ -37,13 +37,10 @@ const Footer = () => {
           </Text>
         </VStack>
         <VStack
-          // bg={'yellowgreen'}
           marginLeft={4}
           marginRight={4}
           w={'60%'}
-          // justifyContent={'center'}
           alignItems={'flex-start'}
-          //   bg={'yellowgreen'}
         >
           <Heading
             textAlign={['center']}

@@ -50,7 +50,6 @@ const Navbar = () => {
             color="black"
             placeholder="Category"
             onChange={categoryHandler}
-            // size={}
           >
             {category.map(i => (
               <option key={i.strCategory} value={i.strCategory}>
