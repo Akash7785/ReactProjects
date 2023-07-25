@@ -15,7 +15,7 @@ import React, { useEffect, useState } from 'react';
 import Loader from './Loader';
 
 const MealDetailCard = ({ data = [] }) => {
-  const [newArray] = useState([]);
+  const [newArray, setNewArray] = useState([]);
 
   const [loader, setLoader] = useState('true');
   // const url = data.strYoutube;

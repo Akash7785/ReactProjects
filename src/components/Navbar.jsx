@@ -22,7 +22,7 @@ const Navbar = () => {
       setCategory(data.meals);
     };
     fetch();
-  }, [category]);
+  }, []);
 
   return (
     <>
