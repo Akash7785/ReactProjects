@@ -68,7 +68,7 @@ const MealDetailCard = ({ data = [] }) => {
           </Heading>
           <HStack wrap={'wrap'}>
             {newArray.map(i => (
-              <IngreCard ingredients={i.inge} measure={i.mes} />
+              <IngreCard key={i} measure={i.mes} />
             ))}
           </HStack>
           <MealCard
@@ -131,7 +131,7 @@ const IngreCard = ({ id, measure, ingredients }) => (
         <HStack>
           <ListIcon color="green.500" />
           <Text textAlign={'center'}>{measure}</Text>
-          <Text textAlign={'center'}>{ingredients}</Text>
+          {/* <Text textAlign={'center'}>{ingredients}</Text> */}
         </HStack>
       </ListItem>
     </List>
