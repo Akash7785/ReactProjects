@@ -12,17 +12,27 @@ import {
   AspectRatio,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import Loader from './Loader';
 
 const MealDetailCard = ({ data = [] }) => {
+  const [newArray] = useState([]);
+
+  const [loader, setLoader] = useState('true');
+  // const url = data.strYoutube;
+  // console.log(url);
+  // const str = url.split('=');
+  // const vid = str[str.length - 1];
+  // console.log(vid);
+
   // console.log(data);
-  const [newArray, setNewArray] = useState([]);
-  // const [detail, setDetail] = useState(data);
+
   let arrkey = [];
   let arrVal = [];
 
   useEffect(() => {
-    console.log('Reache');
+    // console.log('Reache');
     processData(data);
+    setLoader(false);
   }, [data]);
 
   const processData = detail => {
@@ -45,25 +55,31 @@ const MealDetailCard = ({ data = [] }) => {
 
   return (
     <>
-      <Heading
-        textAlign={'center'}
-        fontSize={['2xl', '3xl']}
-        textTransform={'capitalize'}
-      >
-        Total Ingredients {newArray.length}
-      </Heading>
-      <HStack wrap={'wrap'}>
-        {newArray.map(i => (
-          <IngreCard ingredients={i.inge} measure={i.mes} />
-        ))}
-      </HStack>
-      <MealCard
-        image={data.strMealThumb}
-        mealName={data.strMeal}
-        mealCategory={data.strCategory}
-        instruction={data.strInstructions}
-        videoLink={data.strYoutube}
-      />
+      {loader ? (
+        <Loader />
+      ) : (
+        <>
+          <Heading
+            textAlign={'center'}
+            fontSize={['2xl', '3xl']}
+            textTransform={'capitalize'}
+          >
+            Total Ingredients {newArray.length}
+          </Heading>
+          <HStack wrap={'wrap'}>
+            {newArray.map(i => (
+              <IngreCard ingredients={i.inge} measure={i.mes} />
+            ))}
+          </HStack>
+          <MealCard
+            image={data.strMealThumb}
+            mealName={data.strMeal}
+            mealCategory={data.strCategory}
+            instruction={data.strInstructions}
+            videoLink={`https://www.youtube.com/embed/`}
+          />
+        </>
+      )}
     </>
   );
 };
@@ -88,7 +104,7 @@ const MealCard = ({
       </VStack>
       <VStack>
         <Heading fontSize={['2xl', '3xl']}>INSTRUCTION</Heading>
-        <Text maxW={'80%'} textAlign={'justify'}>
+        <Text maxW={'90%'} textAlign={'justify'}>
           {instruction}
         </Text>
       </VStack>
@@ -103,12 +119,12 @@ const MealCard = ({
       maxW="560px"
       ratio={1}
     >
-      <iframe title="meal Video" src={videoLink} allowFullScreen />
+      <iframe width="420" height="315" src={videoLink}></iframe>
     </AspectRatio>
   </Container>
 );
 
-const IngreCard = ({ measure, ingredients }) => (
+const IngreCard = ({ id, measure, ingredients }) => (
   <Container>
     <List spacing={3}>
       <ListItem>
