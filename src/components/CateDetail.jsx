@@ -10,7 +10,6 @@ import React, { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 const CateDetail = () => {
   const data = useLocation();
-  const { id } = useParams();
 
   useEffect(() => {
     if (data) {

@@ -13,33 +13,30 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Loader from './Loader';
+import { nanoid } from 'nanoid';
 
 const MealDetailCard = ({ data = [] }) => {
   const [newArray, setNewArray] = useState([]);
 
   const [loader, setLoader] = useState('true');
-  // const url = data.strYoutube;
-  // console.log(url);
-  // const str = url.split('=');
-  // const vid = str[str.length - 1];
-  // console.log(vid);
-
-  // console.log(data);
 
   let arrkey = [];
   let arrVal = [];
+  let ingreArray = [];
 
   useEffect(() => {
-    // console.log('Reache');
+    console.log('Reache');
     processData(data);
+    console.log('Processed DATa', data);
     setLoader(false);
+    setNewArray(ingreArray);
   }, [data]);
 
   const processData = detail => {
     for (let i = 1; i <= 20; i++) {
       if (
-        detail[`strIngredient${i}`] == '' ||
-        detail[`strIngredient${i}`] == null
+        detail[`strIngredient${i}`] === '' ||
+        detail[`strIngredient${i}`] === null
       ) {
         continue;
       } else {
@@ -48,7 +45,7 @@ const MealDetailCard = ({ data = [] }) => {
       }
     }
     arrkey.map((i, index) => {
-      newArray.push({ mes: arrVal[index], inge: arrkey[index] });
+      ingreArray.push({ mes: arrVal[index], inge: arrkey[index] });
     });
     console.log('Setted ingre', newArray);
   };
@@ -68,7 +65,10 @@ const MealDetailCard = ({ data = [] }) => {
           </Heading>
           <HStack wrap={'wrap'}>
             {newArray.map(i => (
-              <IngreCard key={i} measure={i.mes} />
+              <>
+                {/* <h1>{JSON.stringify(i)}</h1> */}
+                <IngreCard key={nanoid()} ingredients={i.inge} />
+              </>
             ))}
           </HStack>
           <MealCard
@@ -119,19 +119,19 @@ const MealCard = ({
       maxW="560px"
       ratio={1}
     >
-      <iframe width="420" height="315" src={videoLink}></iframe>
+      <iframe title="video" width="420" height="315" src={videoLink}></iframe>
     </AspectRatio>
   </Container>
 );
 
-const IngreCard = ({ id, measure, ingredients }) => (
+const IngreCard = ({ measure, ingredients, id }) => (
   <Container>
     <List spacing={3}>
       <ListItem>
         <HStack>
           <ListIcon color="green.500" />
           <Text textAlign={'center'}>{measure}</Text>
-          {/* <Text textAlign={'center'}>{ingredients}</Text> */}
+          <Text textAlign={'center'}>{ingredients}</Text>
         </HStack>
       </ListItem>
     </List>
