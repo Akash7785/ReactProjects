@@ -9,7 +9,6 @@ import {
   Stack,
   Text,
   VStack,
-  AspectRatio,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Loader from './Loader';
@@ -17,12 +16,11 @@ import { nanoid } from 'nanoid';
 
 const MealDetailCard = ({ data = [] }) => {
   const [newArray, setNewArray] = useState([]);
-
   const [loader, setLoader] = useState('true');
 
+  let ingreArray = [];
   let arrkey = [];
   let arrVal = [];
-  let ingreArray = [];
 
   useEffect(() => {
     console.log('Reache');
@@ -33,7 +31,7 @@ const MealDetailCard = ({ data = [] }) => {
   }, [data]);
 
   const processData = detail => {
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 10; i++) {
       if (
         detail[`strIngredient${i}`] === '' ||
         detail[`strIngredient${i}`] === null
@@ -66,8 +64,11 @@ const MealDetailCard = ({ data = [] }) => {
           <HStack wrap={'wrap'}>
             {newArray.map(i => (
               <>
-                {/* <h1>{JSON.stringify(i)}</h1> */}
-                <IngreCard key={nanoid()} ingredients={i.inge} />
+                <IngreCard
+                  key={nanoid()}
+                  measure={i.mes}
+                  ingredients={i.inge}
+                />
               </>
             ))}
           </HStack>
@@ -76,7 +77,6 @@ const MealDetailCard = ({ data = [] }) => {
             mealName={data.strMeal}
             mealCategory={data.strCategory}
             instruction={data.strInstructions}
-            videoLink={`https://www.youtube.com/embed/`}
           />
         </>
       )}
@@ -84,13 +84,7 @@ const MealDetailCard = ({ data = [] }) => {
   );
 };
 
-const MealCard = ({
-  image,
-  mealName,
-  mealCategory,
-  instruction,
-  videoLink,
-}) => (
+const MealCard = ({ image, mealName, mealCategory, instruction }) => (
   <Container p={4} maxW={['full', 'container.xl']}>
     <Stack direction={['column', 'row']}>
       <VStack>
@@ -109,18 +103,6 @@ const MealCard = ({
         </Text>
       </VStack>
     </Stack>
-    <Heading m={2} fontSize={['2xl', '3xl']} textAlign={'center'}>
-      Youtube Video
-    </Heading>
-    <AspectRatio
-      alignItems={'center'}
-      marginTop={2}
-      marginBottom={2}
-      maxW="560px"
-      ratio={1}
-    >
-      <iframe title="video" width="420" height="315" src={videoLink}></iframe>
-    </AspectRatio>
   </Container>
 );
 
